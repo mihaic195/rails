@@ -28,7 +28,7 @@ module ActionDispatch
         rescue TypeError => e
           p "============================================="
           p "#{event_name}"
-          p "#{events_collection.size}"
+          p "#{events_collection}"
           p "============================================="
         end
       end
