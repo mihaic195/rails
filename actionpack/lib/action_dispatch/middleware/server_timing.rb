@@ -21,6 +21,8 @@ module ActionDispatch
       ensure
         ActiveSupport::Notifications.unsubscribe(subscriber)
       end
+      p "======="
+      p "#{events}"
 
       header_info = events.group_by(&:name).map do |event_name, events_collection|
         "#{event_name};dur=#{events_collection.sum(&:duration)}"
