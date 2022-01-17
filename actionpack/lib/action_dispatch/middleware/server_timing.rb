@@ -23,10 +23,6 @@ module ActionDispatch
       end
 
       header_info = events.group_by(&:name).map do |event_name, events_collection|
-        p "------"
-        p "#{event_name}"
-        p "#{events_collection}"
-        p "------"
         "#{event_name};dur=#{events_collection.sum(&:duration)}"
       end
       headers[SERVER_TIMING_HEADER] = header_info.join(", ")
