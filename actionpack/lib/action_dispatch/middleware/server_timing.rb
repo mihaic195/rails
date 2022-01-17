@@ -21,11 +21,16 @@ module ActionDispatch
       ensure
         ActiveSupport::Notifications.unsubscribe(subscriber)
       end
-      p "======="
-      p "#{events}"
 
       header_info = events.group_by(&:name).map do |event_name, events_collection|
-        "#{event_name};dur=#{events_collection.sum(&:duration)}"
+        begin
+          "#{event_name};dur=#{events_collection.sum(&:duration)}"
+        rescue TypeError => e
+          p "============================================="
+          p "#{event_name}"
+          p "#{events_collection.size}"
+          p "============================================="
+        end
       end
       headers[SERVER_TIMING_HEADER] = header_info.join(", ")
 
