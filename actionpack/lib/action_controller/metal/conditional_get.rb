@@ -119,14 +119,6 @@ module ActionController
       weak_etag ||= etag || object unless strong_etag
       last_modified ||= object.try(:updated_at) || object.try(:maximum, :updated_at)
 
-      p "==========="
-      p weak_etag
-      p "=========="
-      p etag
-      p "========="
-      p object.inspect
-      p "=========="
-
       if strong_etag
         response.strong_etag = combine_etags strong_etag,
           last_modified: last_modified, public: public, template: template
