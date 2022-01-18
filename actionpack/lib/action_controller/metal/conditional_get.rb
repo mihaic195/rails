@@ -319,6 +319,10 @@ module ActionController
 
     private
       def combine_etags(validator, options)
+        p "========"
+        p "#{validator}"
+        p "======"
+        p "#{etaggers}"
         [validator, *etaggers.map { |etagger| instance_exec(options, &etagger) }].compact
       end
   end
