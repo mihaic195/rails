@@ -12,7 +12,9 @@ module ActionController
     include ActionController::ConditionalGet
 
     included do
-      etag { flash unless flash.empty? }
+      if defined?(flash)
+        etag { flash unless flash.empty? }
+      end
     end
   end
 end
