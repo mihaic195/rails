@@ -71,10 +71,11 @@ module Rails
           end
 
           unless config.api_only
-            middleware.use ::ActionDispatch::Flash
             middleware.use ::ActionDispatch::ContentSecurityPolicy::Middleware
             middleware.use ::ActionDispatch::PermissionsPolicy::Middleware
           end
+
+          middleware.use ::ActionDispatch::Flash
 
           middleware.use ::Rack::Head
           middleware.use ::Rack::ConditionalGet
