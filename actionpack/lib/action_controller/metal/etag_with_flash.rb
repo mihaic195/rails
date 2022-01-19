@@ -11,8 +11,6 @@ module ActionController
 
     include ActionController::ConditionalGet
 
-    delegate :flash, to: :request
-
     included do
       etag { flash if request.respond_to?(:flash) && !flash.empty? }
     end
